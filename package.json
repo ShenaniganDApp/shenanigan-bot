@@ -18,10 +18,11 @@
     "moment-recur": "^1.0.7",
     "node-cron": "^2.0.3",
     "node-ical": "^0.9.2",
-    "olm": "https://packages.matrix.org/npm/olm/olm-3.1.4.tgz"
+    "olm": "https://packages.matrix.org/npm/olm/olm-3.1.4.tgz",
+    "prettier": "^1.19.1"
   },
   "devDependencies": {
-    "eslint": "^5.6.1",
+    "eslint": "^5.16.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0"
   }

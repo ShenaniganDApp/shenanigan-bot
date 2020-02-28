@@ -13,7 +13,7 @@ const {
   // hashtagMappings,
   // calendarURL,
   // calendarUpperLimitInMonths,
-  scheduledMessages
+  scheduledMessages,
 } = require('./constants')
 
 exports.handleScheduledMessages = function(client) {
@@ -258,11 +258,7 @@ exports.handleResponse = function(
           privateRooms[user].welcoming = undefined
         }
       } else {
-        sendInternalMessage(
-          "I didn't recognize that response :(",
-          user,
-          client
-        )
+        sendInternalMessage("I didn't recognize that response :(", user, client)
       }
     } else if (
       (!privateRooms[user] || !privateRooms[user].welcoming) &&
@@ -374,14 +370,7 @@ function sendNextQuestion(
   let question = questions[curQuestion]
   sendInternalMessage(question.msg, user, client, () => {
     if (!question.positive) {
-      sendNextQuestion(
-        curQuestion,
-        questions,
-        user,
-        privateRooms,
-        client,
-        room
-      )
+      sendNextQuestion(curQuestion, questions, user, privateRooms, client, room)
     }
   })
 }
@@ -403,7 +392,7 @@ exports.sendInternalMessage = function sendInternalMessage(
       .createRoom({
         preset: 'trusted_private_chat',
         invite: [user],
-        is_direct: true
+        is_direct: true,
       })
       .then(res => {
         privateRooms[user] = { room: res.room_id }

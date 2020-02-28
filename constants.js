@@ -1,5 +1,5 @@
-var moment = require('moment');
-require('moment-recur');
+var moment = require('moment')
+require('moment-recur')
 
 // Allowed users that can dish out points
 // module.exports.userList = [
@@ -48,16 +48,16 @@ require('moment-recur');
 // CHATBOT
 
 module.exports.hashtagMappings = {
-  '!kUeYRcrXObgGoJlFjn:matrix.org': 'sc'
-};
+  '!kUeYRcrXObgGoJlFjn:matrix.org': 'sc',
+}
 
 // module.exports.calendarURL =
 //   'https://calendar.google.com/calendar/ical/givethdotio%40gmail.com/public/basic.ics'
 
 // module.exports.calendarUpperLimitInMonths = 2
 
-module.exports.positiveResponses = ['yes', 'yup', 'yea'];
-module.exports.negativeResponses = ['no'];
+module.exports.positiveResponses = ['yes', 'yup', 'yea']
+module.exports.negativeResponses = ['no']
 
 module.exports.scheduledMessages = [
   // CONTRIBUTORS
@@ -156,7 +156,7 @@ module.exports.scheduledMessages = [
       .every(25)
       .daysOfMonth(),
   },**/
-];
+]
 
 module.exports.messages = {
   // Design
@@ -165,7 +165,7 @@ module.exports.messages = {
       'Now that you’re in Design there are a few resources that will help you along the way:\
     N/A',
     externalMsg:
-      'Welcome to Design, %USER%! Please feel free to ask any questions in channel. I’ve also sent you a direct message with more info.'
+      'Welcome to Design, %USER%! Please feel free to ask any questions in channel. I’ve also sent you a direct message with more info.',
   },
 
   // GENERAL
@@ -177,7 +177,7 @@ module.exports.messages = {
         msg:
           'Hey %USER%, welcome to Shenanigan!! First a few tips if you are a new Riot user:\n\
       \n* [Download Riot](https://about.riot.im/downloads/) on your device for quick and easy access\n\
-      \n* Limit notifications per room [by changing it](https://about.riot.im/need-help/#rooms-section) to mentions only'
+      \n* Limit notifications per room [by changing it](https://about.riot.im/need-help/#rooms-section) to mentions only',
       },
       {
         msg: 'Do you want to know which rooms you can join?',
@@ -190,7 +190,7 @@ module.exports.messages = {
 \n* Here with **DAO questions**? Plz send a DM to @youngkidwarrior - he will add you to the discussion.\
 ',
         negative:
-          'Sure! No worries, whenever you want this info, just ask me here.'
+          'Sure! No worries, whenever you want this info, just ask me here.',
       },
       {
         msg: 'Would you like some more info on Shenanigan?',
@@ -200,9 +200,9 @@ module.exports.messages = {
          \n Please fill out this [document](https://forms.gle/vpHkUddSE2uQvpgQ9) if you want to build Shenanigan with us. Even if you don’t have time right now, we might meet in the future!\
           ',
         negative:
-          'Sure! No worries, whenever you want this info, just ask me here.'
-      }
-    ]
+          'Sure! No worries, whenever you want this info, just ask me here.',
+      },
+    ],
   },
 
   // Developers
@@ -212,16 +212,16 @@ module.exports.messages = {
     internalMsg: [
       {
         msg:
-          'Hey %USER%, welcome to the Developers room! Make sure you fill out this [document](https://forms.gle/vpHkUddSE2uQvpgQ9) if you want to build Shenanigan with us. Even if you don’t have time right now, we might meet in the future!'
+          'Hey %USER%, welcome to the Developers room! Make sure you fill out this [document](https://forms.gle/vpHkUddSE2uQvpgQ9) if you want to build Shenanigan with us. Even if you don’t have time right now, we might meet in the future!',
       },
       {
         msg:
           'Have you earned some points (or are planning to!) and would like to know how to get your eth?',
         positive:
           'Great! Well, to receive your eth, the process is easy, just make sure you document your work through a video on our Wall of Fame. More info [here](https://wiki.giveth.io/dac/contributors-guide/)!',
-        negative: 'Sure, no problem! Whenever you want to know just ask me!'
-      }
-    ]
+        negative: 'Sure, no problem! Whenever you want to know just ask me!',
+      },
+    ],
   },
 
   // Sales & Advertisement
@@ -229,7 +229,7 @@ module.exports.messages = {
     externalMsg:
       'Welcome %USER% to the Sales & Advertisement room! Feel free to introduce yourself or ask any question! I’ve also sent you a direct message with more info.',
     internalMsg:
-      'Hey %USER%, welcome to the Sales & Advertisement room! If you want to actively participate and help us sponsor athletes make sure to hop in our Advertisemnt meeting sometime.'
+      'Hey %USER%, welcome to the Sales & Advertisement room! If you want to actively participate and help us sponsor athletes make sure to hop in our Advertisemnt meeting sometime.',
   },
 
   // GOVERNANCE
@@ -237,9 +237,9 @@ module.exports.messages = {
     externalMsg:
       'Welcome %USER% to the Governance room! Feel free to introduce yourself or ask any question',
     internalMsg:
-      'Hey %USER%, welcome to the Governance room! If you want to actively participate and help us Sponsor Athletes you are welcome hop in our Governance Meeting'
-  }
-};
+      'Hey %USER%, welcome to the Governance room! If you want to actively participate and help us Sponsor Athletes you are welcome hop in our Governance Meeting',
+  },
+}
 
 module.exports.questions = {
   // GENERAL
@@ -247,24 +247,24 @@ module.exports.questions = {
     {
       trigger: 'download riot',
       answer:
-        '[Download Riot](https://about.riot.im/downloads/) on your device for quick and easy access'
+        '[Download Riot](https://about.riot.im/downloads/) on your device for quick and easy access',
     },
     {
       trigger: 'too many notifications',
       answer:
-        'Limit notifications per room [by changing it](https://about.riot.im/need-help/#rooms-section) to mentions only'
+        'Limit notifications per room [by changing it](https://about.riot.im/need-help/#rooms-section) to mentions only',
     },
     {
       trigger: 'more info on Shenanigan',
       answer:
         'To get up to speed on what we do and who we are the best place to start is our [website](http://she.energy/).\
-      '
+      ',
     },
     {
       trigger: 'which rooms',
       answer:
-        'You can find an overview of all our rooms by tapping/clicking on the flair next to my name.'
-    }
+        'You can find an overview of all our rooms by tapping/clicking on the flair next to my name.',
+    },
   ],
 
   // DEVELOPERS
@@ -273,11 +273,11 @@ module.exports.questions = {
       trigger: [
         'I want to be a tester',
         'I want to test the dapp',
-        'how can I test'
+        'how can I test',
       ],
       answer:
-        'Great that you want to test the DApp with us! @youngkidwarrior:matrix.org will be in touch! If he isn’t, stalk him :-)'
-    }
+        'Great that you want to test the DApp with us! @youngkidwarrior:matrix.org will be in touch! If he isn’t, stalk him :-)',
+    },
   ],
 
   // SALES & ADVERTISEMENT
@@ -287,25 +287,25 @@ module.exports.questions = {
         'join the Sales & Advertisement Meeting',
         'join the comms meeting',
         'join our comms meeting',
-        'Weekly meeting in'
+        'Weekly meeting in',
       ],
-      answer: 'The Sales & Advertisement meeting has no set time yet'
+      answer: 'The Sales & Advertisement meeting has no set time yet',
     },
     {
       trigger: ['Sales & Advertisement Meeting notes', 'Our meeting notes'],
-      answer: "Notes currently aren't recorded."
-    }
+      answer: "Notes currently aren't recorded.",
+    },
   ],
 
   // GOVERNANCE
   '!NbcBXgBIoFqgdQsgLw:matrix.org': [
     {
       trigger: 'join the meeting',
-      answer: 'The Governance meeting has no set time yet'
-    }
-  ]
+      answer: 'The Governance meeting has no set time yet',
+    },
+  ],
 
   // DApp DEVELOPMENT
   /** "!pJNSuPMvcrDttmJFvV:matrix.org": [
    ]**/
-};
+}
