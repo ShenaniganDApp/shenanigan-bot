@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Production Deploy
           command: |
-            ssh -o "StrictHostKeyChecking no" root@138.197.194.71 'git pull && npm install && pm2 startOrRestart ecosystem.config.js --env production;'
+            ssh -o "StrictHostKeyChecking no" root@159.65.104.127 'git pull && npm install && pm2 startOrRestart ecosystem.config.js --env production;'
 
 workflows:
   version: 2
