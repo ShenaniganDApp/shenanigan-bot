@@ -1,8 +1,9 @@
 const fs = require('fs')
 const readline = require('readline')
 const { google } = require('googleapis')
+
 const sdk = require('matrix-js-sdk')
-const pointsBot = require('./pointsbot.js')
+// const pointsBot = require('./pointsbot.js')
 const chatBot = require('./chatbot.js')
 var cron = require('node-cron')
 let privateRooms = {}
@@ -105,7 +106,7 @@ function authenticated(auth) {
         })
 
         client.on('Room.timeline', (event, room, toStartOfTimeline) => {
-          chatBot.handleCalendar(event, room, toStartOfTimeline, client)
+          // chatBot.handleCalendar(event, room, toStartOfTimeline, client)
           chatBot.handleNewMember(
             event,
             room,
@@ -113,15 +114,15 @@ function authenticated(auth) {
             client,
             privateRooms
           )
-          pointsBot.handlePointGiving(
-            auth,
-            event,
-            room,
-            toStartOfTimeline,
-            client,
-            privateRooms,
-            chatBot.sendInternalMessage
-          )
+          // pointsBot.handlePointGiving(
+          //   auth,
+          //   event,
+          //   room,
+          //   toStartOfTimeline,
+          //   client,
+          //   privateRooms,
+          //   chatBot.sendInternalMessage
+          // )
           chatBot.handleResponse(
             event,
             room,
