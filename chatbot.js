@@ -1,9 +1,9 @@
-const ical = require('node-ical');
-const markdown = require('markdown').markdown;
-var moment = require('moment');
-require('moment-timezone');
-require('moment-recur');
-let privateRooms = {};
+const ical = require('node-ical')
+const markdown = require('markdown').markdown
+var moment = require('moment')
+require('moment-timezone')
+require('moment-recur')
+let privateRooms = {}
 
 const {
   positiveResponses,
@@ -14,16 +14,16 @@ const {
   // calendarURL,
   // calendarUpperLimitInMonths,
   scheduledMessages
-} = require('./constants');
+} = require('./constants')
 
 exports.handleScheduledMessages = function(client) {
-  let now = moment.utc();
+  let now = moment.utc()
   scheduledMessages.forEach(message => {
     if (message.when.matches(now)) {
-      sendMessage(message.message, '', client, message.room);
+      sendMessage(message.message, '', client, message.room)
     }
-  });
-};
+  })
+}
 
 // exports.handleCalendar = function(event, room, toStartOfTimeline, client) {
 //   if (event.getType() === 'm.room.message' && toStartOfTimeline === false) {
@@ -150,7 +150,7 @@ exports.handleScheduledMessages = function(client) {
 //                   timeZone: 'utc',
 //                   timeZoneName: 'short',
 //                 })
-//               ;('\n')
+//               ('\n')
 //             })
 //             output = localOutput + '\n\n' + output
 //           }
@@ -175,10 +175,10 @@ exports.handleNewMember = function(
     (!event.event.unsigned.prev_content ||
       event.event.unsigned.prev_content.membership === 'invite')
   ) {
-    const user = event.getSender();
-    const room = event.getRoomId();
+    const user = event.getSender()
+    const room = event.getRoomId()
 
-    let roomMessages = messages[room];
+    let roomMessages = messages[room]
 
     if (roomMessages) {
       handleWelcome(
@@ -188,10 +188,10 @@ exports.handleNewMember = function(
         privateRooms,
         roomMessages.externalMsg,
         roomMessages.internalMsg
-      );
+      )
     }
   }
-};
+}
 
 exports.handleResponse = function(
   event,
@@ -201,8 +201,8 @@ exports.handleResponse = function(
   privateRooms
 ) {
   if (event.getType() === 'm.room.message' && toStartOfTimeline === false) {
-    let msg = event.getContent().body;
-    const user = event.getSender();
+    let msg = event.getContent().body
+    const user = event.getSender()
     if (
       privateRooms[user] &&
       privateRooms[user].welcoming &&
@@ -210,39 +210,39 @@ exports.handleResponse = function(
       room.roomId == privateRooms[user].room
     ) {
       let greetingQuestions =
-        messages[privateRooms[user].welcoming.room].internalMsg;
-      let curQuestion = privateRooms[user].welcoming.curQuestion;
+        messages[privateRooms[user].welcoming.room].internalMsg
+      let curQuestion = privateRooms[user].welcoming.curQuestion
 
-      let positive = false;
-      let negative = false;
+      let positive = false
+      let negative = false
       positiveResponses.some(response => {
         if (msg.includes(response.toLowerCase())) {
-          positive = true;
-          return true;
+          positive = true
+          return true
         }
-        return false;
-      });
+        return false
+      })
 
       negativeResponses.some(response => {
         if (msg.includes(response.toLowerCase())) {
-          negative = true;
-          return true;
+          negative = true
+          return true
         }
-        return false;
-      });
+        return false
+      })
 
       if (positive) {
         sendInternalMessage(
           greetingQuestions[curQuestion].positive,
           user,
           client
-        );
+        )
       } else if (negative) {
         sendInternalMessage(
           greetingQuestions[curQuestion].negative,
           user,
           client
-        );
+        )
       }
 
       if (positive || negative) {
@@ -253,16 +253,16 @@ exports.handleResponse = function(
             user,
             client,
             privateRooms[user].welcoming.room
-          );
+          )
         } else {
-          privateRooms[user].welcoming = undefined;
+          privateRooms[user].welcoming = undefined
         }
       } else {
         sendInternalMessage(
           "I didn't recognize that response :(",
           user,
           client
-        );
+        )
       }
     } else if (
       (!privateRooms[user] || !privateRooms[user].welcoming) &&
@@ -274,33 +274,33 @@ exports.handleResponse = function(
             questions.hasOwnProperty(key) &&
             checkForRoomQuestions(msg, key, room.roomId, user, client)
           ) {
-            break;
+            break
           }
         }
       } else {
-        checkForRoomQuestions(msg, room.roomId, room.roomId, user, client);
+        checkForRoomQuestions(msg, room.roomId, room.roomId, user, client)
       }
     }
   } else if (
     event.getType() === 'm.room.member' &&
     event.event.membership === 'leave'
   ) {
-    let privateRoom = privateRooms[event.getSender()];
+    let privateRoom = privateRooms[event.getSender()]
     if (privateRoom && privateRoom.room == event.event.room_id) {
-      privateRoom.room = undefined;
-      privateRoom.welcoming = undefined;
+      privateRoom.room = undefined
+      privateRoom.welcoming = undefined
     }
   }
-};
+}
 
 function getDayOfYear(date) {
-  var start = new Date(date.getFullYear(), 0, 0);
+  var start = new Date(date.getFullYear(), 0, 0)
   var diff =
     date -
     start +
-    (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000;
-  var oneDay = 1000 * 60 * 60 * 24;
-  return Math.floor(diff / oneDay);
+    (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000
+  var oneDay = 1000 * 60 * 60 * 24
+  return Math.floor(diff / oneDay)
 }
 
 function checkForRoomQuestions(
@@ -310,30 +310,30 @@ function checkForRoomQuestions(
   user,
   client
 ) {
-  let questionsForRoom = questions[roomForQuestions];
+  let questionsForRoom = questions[roomForQuestions]
   if (questionsForRoom) {
     questionsForRoom.forEach(question => {
-      let shouldAnswerQuestion = false;
+      let shouldAnswerQuestion = false
       if (typeof question.trigger === 'string') {
         shouldAnswerQuestion = msg
           .toLowerCase()
-          .includes(question.trigger.toLowerCase());
+          .includes(question.trigger.toLowerCase())
       } else {
         question.trigger.some(trigger => {
           if (msg.toLowerCase().includes(trigger.toLowerCase())) {
-            shouldAnswerQuestion = true;
-            return true;
+            shouldAnswerQuestion = true
+            return true
           }
-          return false;
-        });
+          return false
+        })
       }
       if (shouldAnswerQuestion) {
-        sendMessage(question.answer, user, client, roomToSendIn);
-        return true;
+        sendMessage(question.answer, user, client, roomToSendIn)
+        return true
       }
-    });
+    })
   }
-  return false;
+  return false
 }
 
 function handleWelcome(
@@ -345,16 +345,16 @@ function handleWelcome(
   internalMsg
 ) {
   if (typeof externalMsg === 'string') {
-    sendMessage(externalMsg, user, client, room);
+    sendMessage(externalMsg, user, client, room)
   }
   if (typeof internalMsg === 'string') {
-    sendInternalMessage(internalMsg, user, client, privateRooms);
+    sendInternalMessage(internalMsg, user, client, privateRooms)
   } else if (typeof internalMsg === 'object') {
     if (
       !privateRooms[user] ||
       (privateRooms[user] && !privateRooms[user].welcoming)
     ) {
-      sendNextQuestion(-1, internalMsg, user, privateRooms, client, room);
+      sendNextQuestion(-1, internalMsg, user, privateRooms, client, room)
     }
   }
 }
@@ -367,11 +367,11 @@ function sendNextQuestion(
   client,
   room
 ) {
-  curQuestion++;
+  curQuestion++
   if (privateRooms[user]) {
-    privateRooms[user].welcoming = { room: room, curQuestion: curQuestion };
+    privateRooms[user].welcoming = { room: room, curQuestion: curQuestion }
   }
-  let question = questions[curQuestion];
+  let question = questions[curQuestion]
   sendInternalMessage(question.msg, user, client, () => {
     if (!question.positive) {
       sendNextQuestion(
@@ -381,9 +381,9 @@ function sendNextQuestion(
         privateRooms,
         client,
         room
-      );
+      )
     }
-  });
+  })
 }
 
 exports.sendInternalMessage = function sendInternalMessage(
@@ -394,9 +394,9 @@ exports.sendInternalMessage = function sendInternalMessage(
   callback
 ) {
   if (privateRooms[user] && privateRooms[user].room) {
-    sendMessage(msg, user, client, privateRooms[user].room);
+    sendMessage(msg, user, client, privateRooms[user].room)
     if (callback) {
-      callback();
+      callback()
     }
   } else {
     client
@@ -406,21 +406,21 @@ exports.sendInternalMessage = function sendInternalMessage(
         is_direct: true
       })
       .then(res => {
-        privateRooms[user] = { room: res.room_id };
-        sendMessage(msg, user, client, privateRooms[user].room);
+        privateRooms[user] = { room: res.room_id }
+        sendMessage(msg, user, client, privateRooms[user].room)
         if (callback) {
-          callback();
+          callback()
         }
-      });
+      })
   }
-};
+}
 
 function sendMessage(msg, user, client, room) {
   if (msg.length > 0) {
-    msg = msg.replace(/^ +| +$/gm, '');
-    let html = markdown.toHTML(msg);
-    msg = msg.replace('%USER%', user);
-    html = html.replace('%USER%', user);
-    client.sendHtmlMessage(room, msg, html);
+    msg = msg.replace(/^ +| +$/gm, '')
+    let html = markdown.toHTML(msg)
+    msg = msg.replace('%USER%', user)
+    html = html.replace('%USER%', user)
+    client.sendHtmlMessage(room, msg, html)
   }
 }
