@@ -160,7 +160,7 @@ module.exports.scheduledMessages = [
 
 module.exports.messages = {
   // Design
-  '!nxKbOMjKGySOnzLwSi:matrix.org:matrix.org': {
+  '!nxKbOMjKGySOnzLwSi:matrix.org': {
     internalMsg:
       'Now that you’re in Design there are a few resources that will help you along the way:\
     N/A',

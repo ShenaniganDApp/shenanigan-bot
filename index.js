@@ -1,7 +1,6 @@
 const fs = require('fs')
 const readline = require('readline')
 const { google } = require('googleapis')
-
 const sdk = require('matrix-js-sdk')
 // const pointsBot = require('./pointsbot.js')
 const chatBot = require('./chatbot.js')
@@ -96,7 +95,7 @@ function authenticated(auth) {
         if (err) {
           console.log('Error:', err)
         }
-
+        
         console.log(`Logged in ${data.user_id} on device ${data.device_id}`)
         const client = sdk.createClient({
           baseUrl: 'https://matrix.org',
@@ -114,6 +113,7 @@ function authenticated(auth) {
             client,
             privateRooms
           )
+          console.log('event: ', event)
           // pointsBot.handlePointGiving(
           //   auth,
           //   event,
