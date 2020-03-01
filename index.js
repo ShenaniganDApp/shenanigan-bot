@@ -95,7 +95,7 @@ function authenticated(auth) {
         if (err) {
           console.log('Error:', err)
         }
-        
+
         console.log(`Logged in ${data.user_id} on device ${data.device_id}`)
         const client = sdk.createClient({
           baseUrl: 'https://matrix.org',
