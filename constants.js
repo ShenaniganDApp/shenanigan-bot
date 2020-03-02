@@ -229,7 +229,7 @@ module.exports.messages = {
     externalMsg:
       'Welcome %USER% to the Sales & Advertisement room! Feel free to introduce yourself or ask any question! I’ve also sent you a direct message with more info.',
     internalMsg:
-      'Hey %USER%, welcome to the Sales & Advertisement room! If you want to actively participate and help us sponsor athletes make sure to hop in our Advertisemnt meeting sometime.',
+      'Hey %USER%, welcome to the Sales & Advertisement room! If you want to actively participate and help us sponsor athletes make sure to hop in our Sales & Advertisement meeting sometime.',
   },
 
   // GOVERNANCE

@@ -16,7 +16,7 @@ const {
   scheduledMessages,
 } = require('./constants')
 
-exports.handleScheduledMessages = function(client) {
+handleScheduledMessages = function(client) {
   let now = moment.utc()
   scheduledMessages.forEach(message => {
     if (message.when.matches(now)) {
@@ -163,7 +163,7 @@ exports.handleScheduledMessages = function(client) {
 //   }
 // }
 
-exports.handleNewMember = function(
+handleNewMember = function(
   event,
   room,
   toStartOfTimeline,
@@ -192,7 +192,7 @@ exports.handleNewMember = function(
   }
 }
 
-exports.handleResponse = function(
+handleResponse = function(
   event,
   room,
   toStartOfTimeline,
@@ -374,13 +374,7 @@ function sendNextQuestion(
   })
 }
 
-exports.sendInternalMessage = function sendInternalMessage(
-  msg,
-  user,
-  client,
-  privateRooms,
-  callback
-) {
+sendInternalMessage = function(msg, user, client, privateRooms, callback) {
   if (privateRooms[user] && privateRooms[user].room) {
     sendMessage(msg, user, client, privateRooms[user].room)
     if (callback) {
@@ -411,4 +405,11 @@ function sendMessage(msg, user, client, room) {
     html = html.replace('%USER%', user)
     client.sendHtmlMessage(room, msg, html)
   }
+}
+
+module.exports = {
+  sendInternalMessage,
+  handleScheduledMessages,
+  handleResponse,
+  handleNewMember,
 }
