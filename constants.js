@@ -176,7 +176,7 @@ module.exports.messages = {
       {
         msg:
           'Hey %USER%, welcome to Shenanigan!! First a few tips if you are a new Riot user:\n\
-      \n* [Download Riot](https://about.riot.im/downloads/) on your device for quick and easy access\n\
+      \n* [Download Riot](https://about.riot.im/downloads) on your device for quick and easy access\n\
       \n* Limit notifications per room [by changing it](https://about.riot.im/need-help/#rooms-section) to mentions only',
       },
       {
@@ -215,10 +215,9 @@ module.exports.messages = {
           'Hey %USER%, welcome to the Developers room! Make sure you fill out this [document](https://forms.gle/vpHkUddSE2uQvpgQ9) if you want to build Shenanigan with us. Even if you don’t have time right now, we might meet in the future!',
       },
       {
-        msg:
-          'Have you earned some points (or are planning to!) and would like to know how to get your eth?',
+        msg: 'Have you submitted a PR and contributed to the project?',
         positive:
-          'Great! Well, to receive your eth, the process is easy, just make sure you document your work through a video on our Wall of Fame. More info [here](https://wiki.giveth.io/dac/contributors-guide/)!',
+          'Great! Well, to receive your eth, make sure you have been assigned the task [here](https://colony.io)! and message @youngkidwarrior for code review',
         negative: 'Sure, no problem! Whenever you want to know just ask me!',
       },
     ],
@@ -237,7 +236,7 @@ module.exports.messages = {
     externalMsg:
       'Welcome %USER% to the Governance room! Feel free to introduce yourself or ask any question',
     internalMsg:
-      'Hey %USER%, welcome to the Governance room! If you want to actively participate and help us Sponsor Athletes you are welcome hop in our Governance Meeting',
+      'Hey %USER%, welcome to the Governance room! If you want to actively participate and help us Sponsor Athletes you are welcome to hop in our Governance Meeting',
   },
 }
 
